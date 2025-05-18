@@ -123,6 +123,7 @@ def build_book_structure(book, max_chapter=None):
 
 @app.route("/")
 def home():
+    # מחזיר את דף ה־HTML במקום JSON
     return render_template("index.html")
 
 
