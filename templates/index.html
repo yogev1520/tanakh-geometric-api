@@ -2,58 +2,35 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8" />
-    <title>API תנ"ך - דף בית</title>
+    <title>API גימטריה תנ"ך</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            direction: rtl;
-            text-align: right;
-            max-width: 700px;
-            margin: 2em auto;
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        code {
-            background: #eee;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-        }
-        .example {
-            background: white;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 1em;
-            box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
-        }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; color: #333; padding: 20px; }
+        h1 { color: #2c3e50; }
+        code { background: #eee; padding: 2px 6px; border-radius: 3px; }
+        .example { background: #fff; padding: 15px; margin-top: 20px; border-radius: 8px; box-shadow: 0 0 5px #ccc; }
     </style>
 </head>
 <body>
-    <h1>ברוכים הבאים ל-API של גימטריה בתנ"ך</h1>
-    <p>זהו API שמחזיר את טקסט התנ"ך עם חישוב גימטריה לכל מילה.</p>
-    
-    <h2>איך להשתמש?</h2>
-    <p>הפניות לדוגמא:</p>
-    <div class="example">
-        <p>כל הספר בראשית:</p>
-        <code>GET /tanakh/בראשית</code><br/>
-        <p>פרק 1 בספר שמות:</p>
-        <code>GET /tanakh/שמות/1</code><br/>
-        <p>פסוק 3 בפרק 5 בספר שמות:</p>
-        <code>GET /tanakh/שמות/5/3</code>
-    </div>
+    <h1>API לגימטריה של תנ"ך</h1>
+    <p>ברוכים הבאים ל-API שמחשב גימטריה של פסוקים בתנ"ך.</p>
+    <p>ניתן להשתמש בכתובות הבאות:</p>
+    <ul>
+        <li><code>/tanakh/&lt;ספר&gt;</code> – כל הפרקים והפסוקים של ספר מסוים</li>
+        <li><code>/tanakh/&lt;ספר&gt;/&lt;פרק&gt;</code> – פרק ספציפי</li>
+        <li><code>/tanakh/&lt;ספר&gt;/&lt;פרק&gt;/page/&lt;מספר עמוד&gt;</code> – פרק עם חלוקה לעמודים</li>
+        <li><code>/tanakh/&lt;ספר&gt;/last_chapter</code> – המספר של הפרק האחרון בספר</li>
+        <li><code>/tanakh/&lt;ספר&gt;/&lt;פרק&gt;/&lt;פסוק&gt;</code> – פסוק ספציפי</li>
+        <li><code>/gematria</code> (POST) – מחשב גימטריה של טקסט</li>
+    </ul>
 
-    <h2>API דינמי לדוגמא</h2>
-    <form method="GET" action="/tanakh/">
-        <label for="book">בחר ספר:</label><br/>
-        <input type="text" id="book" name="book" placeholder="למשל בראשית" required /><br/><br/>
-        <label for="chapter">מספר פרק (אופציונלי):</label><br/>
-        <input type="number" id="chapter" name="chapter" min="1" /><br/><br/>
-        <input type="submit" value="שלח" />
-    </form>
+    <div class="example">
+        <h2>דוגמאות:</h2>
+        <p><strong>קבלת כל ספר בראשית:</strong><br />
+            <code>GET /tanakh/בראשית</code></p>
+        <p><strong>קבלת פרק ראשון בספר בראשית:</strong><br />
+            <code>GET /tanakh/בראשית/1</code></p>
+        <p><strong>חישוב גימטריה לטקסט:</strong><br />
+            שלח POST ל-<code>/gematria</code> עם JSON המכיל <code>{"text": "בראשית"}</code></p>
+    </div>
 </body>
 </html>
