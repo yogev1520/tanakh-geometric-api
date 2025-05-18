@@ -1,12 +1,9 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, render_template
 import requests
 import re
 import json
 import os
 import logging
-from flask import render_template
-
-
 
 app = Flask(__name__)
 
@@ -119,13 +116,10 @@ def build_book_structure(book, max_chapter=None):
         return None
     return {book: structure}
 
-
-
 @app.route("/")
 def home():
     # מחזיר את דף ה־HTML במקום JSON
     return render_template("index.html")
-
 
 @app.route('/tanakh/<book>', methods=['GET'])
 def get_book(book):
@@ -133,10 +127,6 @@ def get_book(book):
     if structure is None:
         return jsonify_hebrew({"error": "ספר לא נמצא או ריק"}, status=404)
     return jsonify_hebrew(structure)
-
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 @app.route('/tanakh/<book>/<int:chapter>', methods=['GET'])
 def get_chapter(book, chapter):
