@@ -119,9 +119,12 @@ def build_book_structure(book, max_chapter=None):
         return None
     return {book: structure}
 
+
+
 @app.route("/")
 def home():
-    return jsonify_hebrew({"message": "API לגימטריה של תנ\"ך עם תמיכה בדפים וספרים – פעיל"})
+    return render_template("index.html")
+
 
 @app.route('/tanakh/<book>', methods=['GET'])
 def get_book(book):
