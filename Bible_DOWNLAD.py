@@ -4,6 +4,9 @@ import re
 import json
 import os
 import logging
+from flask import render_template
+
+
 
 app = Flask(__name__)
 
@@ -126,6 +129,10 @@ def get_book(book):
     if structure is None:
         return jsonify_hebrew({"error": "ספר לא נמצא או ריק"}, status=404)
     return jsonify_hebrew(structure)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route('/tanakh/<book>/<int:chapter>', methods=['GET'])
 def get_chapter(book, chapter):
