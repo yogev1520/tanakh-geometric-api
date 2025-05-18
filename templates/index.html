@@ -1,16 +1,100 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <title>API גימטריה - דף הבית</title>
+    <meta charset="UTF-8">
+    <title>תיעוד ה-API של התנ"ך עם גימטריה</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: right;
+        }
+        th {
+            background-color: #e0e0e0;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
-    <h1>ברוכים הבאים ל-API גימטריה של תנ"ך</h1>
-    <p>השתמש בכתובות ה-API כדי לקבל טקסט, פרקים, פסוקים וגימטריה.</p>
-    <ul>
-        <li><a href="/tanakh/בראשית">ספר בראשית</a></li>
-        <li><a href="/tanakh/תהילים">ספר תהילים</a></li>
-        <!-- תוכל להוסיף כאן קישורים לספרים נוספים -->
-    </ul>
+    <h1>📘 תיעוד ה-API של התנ"ך עם גימטריה</h1>
+    <p>להלן נקודות הקצה (endpoints) הזמינות:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>נתיב</th>
+                <th>שיטה</th>
+                <th>תיאור</th>
+                <th>דוגמה</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>/</code></td>
+                <td>GET</td>
+                <td>דף הבית או הודעת JSON</td>
+                <td><a href="/">/</a></td>
+            </tr>
+            <tr>
+                <td><code>/tanakh/&lt;book&gt;</code></td>
+                <td>GET</td>
+                <td>הצגת כל הפרקים בספר</td>
+                <td><a href="/tanakh/Genesis">/tanakh/Genesis</a></td>
+            </tr>
+            <tr>
+                <td><code>/tanakh/&lt;book&gt;/&lt;chapter&gt;</code></td>
+                <td>GET</td>
+                <td>פסוקים + גימטריה בפרק מסוים</td>
+                <td><a href="/tanakh/Genesis/1">/tanakh/Genesis/1</a></td>
+            </tr>
+            <tr>
+                <td><code>/tanakh/&lt;book&gt;/&lt;chapter&gt;/&lt;verse&gt;</code></td>
+                <td>GET</td>
+                <td>פסוק בודד עם גימטריה</td>
+                <td><a href="/tanakh/Genesis/1/1">/tanakh/Genesis/1/1</a></td>
+            </tr>
+            <tr>
+                <td><code>/tanakh/&lt;book&gt;/&lt;chapter&gt;/page/&lt;page&gt;</code></td>
+                <td>GET</td>
+                <td>עמוד של 10 פסוקים מתוך פרק</td>
+                <td><a href="/tanakh/Genesis/1/page/1">/tanakh/Genesis/1/page/1</a></td>
+            </tr>
+            <tr>
+                <td><code>/tanakh/&lt;book&gt;/last_chapter</code></td>
+                <td>GET</td>
+                <td>הפרק האחרון הזמין בספר</td>
+                <td><a href="/tanakh/Genesis/last_chapter">/tanakh/Genesis/last_chapter</a></td>
+            </tr>
+            <tr>
+                <td><code>/gematria</code></td>
+                <td>POST</td>
+                <td>חישוב גימטריה לטקסט חופשי (JSON בלבד)</td>
+                <td><pre>{
+  "text": "בראשית ברא אלוהים"
+}</pre></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>💡 להציג JSON בדפדפן? השתמש בתוסף <strong>ModHeader</strong> והוסף כותרת: <code>Accept: application/json</code></p>
 </body>
 </html>
