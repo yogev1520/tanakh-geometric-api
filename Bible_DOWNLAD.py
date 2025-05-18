@@ -3,10 +3,12 @@ import requests
 import re
 import json
 import os
-
+import logging
 
 app = Flask(__name__)
 
+# הגדרת לוגינג
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
 
 # מילון גימטריה
 GEMATRIA_VALUES = {
@@ -67,24 +69,22 @@ def load_chapter(book, chapter):
         cache[book] = {}
 
     if chapter in cache[book]:
+        logging.info(f"Cache hit for {book} chapter {chapter}")
         return cache[book][chapter]
 
     url = f"https://www.sefaria.org/api/texts/{book}.{chapter}?lang=he"
-    print(f"Loading URL: {url}")
+    logging.info(f"Loading URL: {url}")
     try:
         response = requests.get(url, timeout=5)
-        print(f"HTTP status: {response.status_code}")
         response.raise_for_status()
         data = response.json()
-        print(f"Keys in response: {list(data.keys())}")
         verses = data.get('he', [])
-        print(f"Number of verses received: {len(verses)}")
+        logging.info(f"Received {len(verses)} verses for {book} chapter {chapter}")
         cache[book][chapter] = verses
         return verses
     except requests.RequestException as e:
-        print(f"Request failed: {e}")
+        logging.error(f"Request failed for {url}: {e}")
         return None
-
 
 def build_book_structure(book, max_chapter=None):
     """
@@ -194,7 +194,6 @@ def get_last_chapter(book):
         "book": book,
         "last_chapter": last_valid_chapter
     })
-
 
 @app.route('/tanakh/<book>/<int:chapter>/<int:verse>', methods=['GET'])
 def get_single_verse(book, chapter, verse):
