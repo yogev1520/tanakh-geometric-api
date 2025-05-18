@@ -70,3 +70,7 @@ if __name__ == '__main__':
 על ידי יוגב שושן 
 
 אימייל YOGEV1520@GMAIL.COM
+
+טל - 0559729311 
+
+https://tanakh-geometric-api-4.onrender.com <<<<>>>>  גישה לאתר   
