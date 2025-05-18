@@ -7,8 +7,6 @@ import os
 
 app = Flask(__name__)
 
-port = int(os.environ.get("PORT", 5000))  # 5000 לפיתוח מקומי, אחרת תקבל מהסביבה
-app.run(host="0.0.0.0", port=port)
 
 # מילון גימטריה
 GEMATRIA_VALUES = {
@@ -228,4 +226,5 @@ def gematria_endpoint():
     return jsonify_hebrew({"original_text": text, "gematria": processed})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
