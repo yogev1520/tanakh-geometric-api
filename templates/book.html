@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ book }} - רשימת פרקים</title>
+</head>
+<body>
+    <h1>רשימת פרקים בספר {{ book }}</h1>
+    <ul>
+    {% for chapter in chapters %}
+        <li><a href="/tanakh/{{ book }}/{{ chapter }}">פרק {{ chapter }}</a></li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ book }} פרק {{ chapter }} פסוק {{ verse }}</title>
+</head>
+<body>
+    <h1>{{ book }} - פרק {{ chapter }} - פסוק {{ verse }}</h1>
+    <p>{{ text }}</p>
+    <h3>גימטריה למילים:</h3>
+    <ul>
+    {% for word_data in gematria %}
+        <li>{{ word_data.word }} = {{ word_data.total }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

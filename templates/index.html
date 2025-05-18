@@ -2,123 +2,15 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>API לגימטריה של תנ"ך - תיעוד</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            color: #333;
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            direction: rtl;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        h2 {
-            color: #34495e;
-            border-bottom: 2px solid #2980b9;
-            padding-bottom: 0.2rem;
-            margin-top: 2rem;
-        }
-        code, pre {
-            background: #ecf0f1;
-            border-radius: 4px;
-            padding: 0.2rem 0.4rem;
-            font-family: monospace;
-            font-size: 1rem;
-        }
-        pre {
-            padding: 1rem;
-            overflow-x: auto;
-        }
-        .endpoint {
-            background: #d6eaf8;
-            padding: 0.5rem 1rem;
-            margin: 0.5rem 0 1rem;
-            border-radius: 6px;
-            font-weight: bold;
-            color: #21618c;
-        }
-        ul {
-            margin: 0.2rem 0 1rem 1.5rem;
-        }
-        .example {
-            background: #f0f3f4;
-            padding: 0.7rem 1rem;
-            margin: 0.8rem 0 1.2rem;
-            border-radius: 6px;
-            font-family: monospace;
-            color: #2c3e50;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-    </style>
+    <title>API גימטריה - דף הבית</title>
 </head>
 <body>
-
-    <h1>API לגימטריה של תנ"ך - תיעוד</h1>
-
-    <p>ברוכים הבאים ל-API שמחשב את גימטריית הפסוקים בתנ"ך.</p>
-
-    <h2>כתובות ה-API הזמינות:</h2>
-
-    <div class="endpoint">/tanakh/&lt;ספר&gt;</div>
-    <p>מחזיר את כל הפרקים והפסוקים של ספר מסוים.</p>
-
-    <div class="endpoint">/tanakh/&lt;ספר&gt;/&lt;פרק&gt;</div>
-    <p>מחזיר את פרק ספציפי עם כל הפסוקים שלו.</p>
-
-    <div class="endpoint">/tanakh/&lt;ספר&gt;/&lt;פרק&gt;/page/&lt;מספר עמוד&gt;</div>
-    <p>מחזיר חלק מהפסוקים של פרק, לפי מספר העמוד (עד 10 פסוקים בעמוד).</p>
-
-    <div class="endpoint">/tanakh/&lt;ספר&gt;/last_chapter</div>
-    <p>מחזיר את מספר הפרק האחרון בספר.</p>
-
-    <div class="endpoint">/tanakh/&lt;ספר&gt;/&lt;פרק&gt;/&lt;פסוק&gt;</div>
-    <p>מחזיר פסוק ספציפי מתוך פרק בספר.</p>
-
-    <div class="endpoint">/gematria (POST)</div>
-    <p>מחשב את גימטריית הטקסט שנשלח בבקשה.</p>
-
-    <h2>דוגמאות לשימוש:</h2>
-
-    <p><strong>קבלת כל ספר בראשית:</strong></p>
-    <div class="example">
-GET /tanakh/בראשית
-    </div>
-
-    <p><strong>קבלת הפרק הראשון בספר בראשית:</strong></p>
-    <div class="example">
-GET /tanakh/בראשית/1
-    </div>
-
-    <p><strong>קבלת עמוד שני מפרק ראשון בספר שמות:</strong></p>
-    <div class="example">
-GET /tanakh/שמות/1/page/2
-    </div>
-
-    <p><strong>קבלת מספר הפרק האחרון בספר תהילים:</strong></p>
-    <div class="example">
-GET /tanakh/תהילים/last_chapter
-    </div>
-
-    <p><strong>קבלת פסוק 3 מפרק 5 בספר שמות:</strong></p>
-    <div class="example">
-GET /tanakh/שמות/5/3
-    </div>
-
-    <p><strong>חישוב גימטריה לטקסט "בראשית":</strong></p>
-    <div class="example">
-POST /gematria  
-תוכן גוף (JSON):  
-{
-  "text": "בראשית"
-}
-    </div>
-
+    <h1>ברוכים הבאים ל-API גימטריה של תנ"ך</h1>
+    <p>השתמש בכתובות ה-API כדי לקבל טקסט, פרקים, פסוקים וגימטריה.</p>
+    <ul>
+        <li><a href="/tanakh/בראשית">ספר בראשית</a></li>
+        <li><a href="/tanakh/תהילים">ספר תהילים</a></li>
+        <!-- תוכל להוסיף כאן קישורים לספרים נוספים -->
+    </ul>
 </body>
 </html>
