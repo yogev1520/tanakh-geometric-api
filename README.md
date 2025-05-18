@@ -1,80 +1,72 @@
-# 📖 תנ"ך בתרגום גיאומטרי – Tanakh Geometric Translation API
+# תנ״ך בתרגום גיאומטרי (Gematria Tanakh API)
 
-API בקוד פתוח אשר מספק תרגום גימטרי (Gematria) לפסוקים מהתנ"ך, עם תמיכה בעברית מלאה ובגישה לפי ספרים, פרקים ופסוקים בודדים.
-
-המערכת משתמשת בטקסטים מתוך [Sefaria.org](https://www.sefaria.org/) ומחזירה תוצאה מפורטת הכוללת את הטקסט המקראי לצד ניתוח גימטרי לכל מילה.
-
----
-
-## 🚀 מה הפרויקט עושה?
-
-- טוען טקסטים מהתנ"ך (API של ספריא)
-- מנתח כל מילה לפי ערך האותיות (גימטריה)
-- מחזיר JSON עם כל המידע: טקסט מקראי, מילות הפסוק, ערכי האותיות, וסכום גימטרי
-- תומך בעימוד (Paging) של פסוקים
-- זמין להפעלה מקומית או פריסה בשרת
+API מבוסס Flask לתרגום כל התנ״ך לערכים מספריים (גימטריה) לפי אותיות עבריות.  
+הפרויקט משתמש בנתוני טקסט מהאתר [sefaria.org](https://www.sefaria.org/) ומחשב גימטריה עבור כל מילה בכל פסוק.
 
 ---
 
-## 📌 דוגמה לפלט API
+## 🚀 דוגמה לשימוש
 
-קריאה:
+### בקשת פסוק עם חישוב גימטריה:
+GET /tanakh/בראשית/1/5
 
-GET /tanakh/בראשית/1/1
-
-css
+bash
 Copy
 Edit
 
-תוצאה:
-
+#### תגובת JSON:
 ```json
 {
   "book": "בראשית",
   "chapter": 1,
-  "verse": 1,
-  "text": "בְּרֵאשִׁית בָּרָא אֱלֹהִים...",
+  "verse": 5,
+  "text": "וַיִּקְרָא אֱלֹהִים לָאוֹר יוֹם...",
   "gematria": [
     {
-      "word": "בראשית",
-      "values": [2, 200, 1, 300, 10, 400],
-      "total": 913
+      "word": "ויקרא",
+      "values": [6, 10, 100, 200, 1],
+      "total": 317
     },
-    {
-      "word": "ברא",
-      "values": [2, 200, 1],
-      "total": 203
-    }
     ...
   ]
 }
-🔗 נקודות קצה
-מסלול	תיאור
-/tanakh/<book>	כל הספר
-/tanakh/<book>/<chapter>	פרק ספציפי
-/tanakh/<book>/<chapter>/<verse>	פסוק בודד
-/tanakh/<book>/<chapter>/page/<page>	עמוד (10 פסוקים)
-/tanakh/<book>/last_chapter	קבלת הפרק האחרון בספר
-/gematria (POST)	שליחת טקסט חופשי וניתוח גימטרי
+📘 נתיבים זמינים (API Endpoints)
+/tanakh/<book> – כל הספר
 
-🛠️ התקנה מקומית
+/tanakh/<book>/<chapter> – פרק מסוים
+
+/tanakh/<book>/<chapter>/<verse> – פסוק מסוים
+
+/tanakh/<book>/<chapter>/page/<page> – דפדוף לפי עמודים
+
+/tanakh/<book>/last_chapter – הפרק האחרון הקיים בספר
+
+POST /gematria – חישוב גימטריה לטקסט חופשי (גוף הבקשה: JSON עם text)
+
+🛠 התקנה מקומית
 bash
 Copy
 Edit
-git clone https://github.com/your_username/tanakh-geometric-api.git
+git clone https://github.com/yogev1520/tanakh-geometric-api.git
 cd tanakh-geometric-api
 pip install -r requirements.txt
 python app.py
-💡 שימושים
-לימוד תנ"ך עם גימטריה
+🌐 פריסה
+ניתן לפרוס את הפרויקט בקלות על Render, Railway או Heroku.
 
-כלי עזר למחקר מקראי
+python
+Copy
+Edit
+# הפעלת שרת עם תמיכה בענן
+if __name__ == '__main__':
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+✡️ קרדיט
+מקור הפסוקים: Sefaria API
 
-חינוך והעשרה יהודית
+חישוב גימטריה לפי ערכי האותיות העבריות כולל סופיות
 
-יצירת קשרים בין פסוקים בערכי גימטריה
+על ידי יוגב שושן 
 
-📃 רישיון
-פרויקט זה מופץ תחת רישיון MIT – חופשי לשימוש אישי, לימודי ומסחרי.
-
-✨ נבנה באהבה ללימוד,
+אימייל YOGEV1520@GMAIL.COM
